@@ -9,6 +9,11 @@ class ArticlePage extends StatefulWidget {
 
 class _ArticlePageState extends State<ArticlePage> {
   var _isExpanded = false;
+  var tabs = [
+    '推荐',
+    '专题',
+    '连载',
+  ];
 
   Widget getItem(int i) {
     return new Card(
@@ -41,11 +46,35 @@ class _ArticlePageState extends State<ArticlePage> {
   }
 
   ///头部选项卡
-  Widget getHead() => TabBar();
+  Widget getHead() {
+    return AppBar(
+      title: Container(
+        width: 200.0,
+        child: TabBar(tabs: tabs.map((f) => Tab(text: f)).toList()),
+      ),
+      actions: <Widget>[
+        IconButton(onPressed: () => {}, icon: Icon(Icons.search)),
+        IconButton(onPressed: () => {}, icon: Icon(Icons.add))
+      ],
+    );
+//        child: Row(
+//          children: <Widget>[
+//
+//            Expanded(
+//              child:  Row(
+//                mainAxisAlignment: MainAxisAlignment.end,
+//                children: <Widget>[
+//                                ],
+//              ),
+//            )
+//          ],
+//        )));
+  }
 
   @override
   Widget build(BuildContext context) {
-    return new Container(
+    return new DefaultTabController(
+      length: tabs.length,
       child: Column(
         children: <Widget>[
           getHead(),

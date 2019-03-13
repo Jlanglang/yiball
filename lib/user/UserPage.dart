@@ -6,7 +6,6 @@ class UserPage extends StatefulWidget {
 }
 
 class _UserPageState extends State<UserPage> {
-  var _isExpanded = false;
 
   Widget getItem(int i) {
     return new Card(
@@ -15,14 +14,6 @@ class _UserPageState extends State<UserPage> {
           padding: EdgeInsets.all(10.0),
           child: Row(
             children: <Widget>[
-              new ExpandIcon(
-                onPressed: (value) {
-                  setState(() {
-                    _isExpanded = !value;
-                  });
-                },
-                isExpanded: _isExpanded,
-              ),
               new Image(
                 image: new NetworkImage(
                     "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1984638492,2471644250&fm=26&gp=0.jpg"),
