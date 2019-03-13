@@ -1,11 +1,13 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
-class UserPage extends StatefulWidget {
+class ArticlePage extends StatefulWidget {
   @override
-  _UserPageState createState() => new _UserPageState();
+  _ArticlePageState createState() => _ArticlePageState();
 }
 
-class _UserPageState extends State<UserPage> {
+class _ArticlePageState extends State<ArticlePage> {
   var _isExpanded = false;
 
   Widget getItem(int i) {
@@ -38,12 +40,16 @@ class _UserPageState extends State<UserPage> {
     );
   }
 
+  ///头部选项卡
+  Widget getHead() => TabBar();
+
   @override
   Widget build(BuildContext context) {
     return new Container(
-      child: new ListView.builder(
-        itemCount: 20,
-        itemBuilder: (context, i) => this.getItem(i),
+      child: Column(
+        children: <Widget>[
+          getHead(),
+        ],
       ),
     );
   }
