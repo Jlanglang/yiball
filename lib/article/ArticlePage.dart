@@ -1,7 +1,6 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 
+///首页文章
 class ArticlePage extends StatefulWidget {
   @override
   _ArticlePageState createState() => _ArticlePageState();
@@ -57,28 +56,15 @@ class _ArticlePageState extends State<ArticlePage> {
         IconButton(onPressed: () => {}, icon: Icon(Icons.add))
       ],
     );
-//        child: Row(
-//          children: <Widget>[
-//
-//            Expanded(
-//              child:  Row(
-//                mainAxisAlignment: MainAxisAlignment.end,
-//                children: <Widget>[
-//                                ],
-//              ),
-//            )
-//          ],
-//        )));
   }
 
   @override
   Widget build(BuildContext context) {
     return new DefaultTabController(
       length: tabs.length,
-      child: Column(
-        children: <Widget>[
-          getHead(),
-        ],
+      child: Scaffold(
+        appBar: getHead(),
+        body: TabBarView(children: []),
       ),
     );
   }
