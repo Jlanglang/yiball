@@ -9,6 +9,8 @@ class SerializePage extends StatefulWidget {
 class _SerializePageState extends State<SerializePage> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Container(
+      child: Text('连载'),
+    );
   }
 }

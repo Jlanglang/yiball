@@ -8,6 +8,8 @@ class SeminarPage extends StatefulWidget {
 class _SeminarPageState extends State<SeminarPage> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Container(
+      child: Text('专题'),
+    );
   }
 }

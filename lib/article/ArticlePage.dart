@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/article/child/RecommendPage.dart';
+import 'package:flutter_app/article/child/SeminarPage.dart';
+import 'package:flutter_app/article/child/SerializePage.dart';
 
 ///首页文章
 class ArticlePage extends StatefulWidget {
@@ -9,9 +12,9 @@ class ArticlePage extends StatefulWidget {
 class _ArticlePageState extends State<ArticlePage> {
   var _isExpanded = false;
   var tabs = [
-    '推荐',
-    '专题',
-    '连载',
+    {'key': '推荐', 'value': RecommendPage()},
+    {'key': '专题', 'value': SeminarPage()},
+    {'key': '连载', 'value': SerializePage()},
   ];
 
   Widget getItem(int i) {
@@ -49,7 +52,7 @@ class _ArticlePageState extends State<ArticlePage> {
     return AppBar(
       title: Container(
         width: 200.0,
-        child: TabBar(tabs: tabs.map((f) => Tab(text: f)).toList()),
+        child: TabBar(tabs: tabs.map((f) => Tab(text: f['key'])).toList()),
       ),
       actions: <Widget>[
         IconButton(onPressed: () => {}, icon: Icon(Icons.search)),
@@ -61,11 +64,11 @@ class _ArticlePageState extends State<ArticlePage> {
   @override
   Widget build(BuildContext context) {
     return new DefaultTabController(
-      length: tabs.length,
-      child: Scaffold(
-        appBar: getHead(),
-        body: TabBarView(children: []),
-      ),
+        length: tabs.length,
+        child: Scaffold(
+            appBar: getHead(),
+            body: TabBarView(
+                children: tabs.map((f) => f['value'] as Widget).toList()))
     );
   }
 }

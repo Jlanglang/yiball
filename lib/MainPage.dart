@@ -12,14 +12,13 @@ class HomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<HomePage> {
   int _selectPage = 0;
-
+  var _pageController = new PageController(initialPage: 0);
   List _page = [
     new ArticlePage(),
     new GoodsPage(),
     new UserPage(),
     new UserPage(),
   ];
-
   var _bottom = [
     new BottomNavigationBarItem(
       icon: Icon(Icons.home),
@@ -43,8 +42,6 @@ class _MyHomePageState extends State<HomePage> {
     )
   ];
 
-  var _pageController = new PageController(initialPage: 0);
-
   void _bottomSelect(index) {
     _pageController.animateToPage(index,
         duration: new Duration(milliseconds: 1000), curve: Curves.ease);
@@ -57,7 +54,8 @@ class _MyHomePageState extends State<HomePage> {
   }
 
   ///主体内容
-  Widget body() => PageView.builder(
+  Widget body(_page) =>
+      PageView.builder(
         onPageChanged: _onPageChanged,
         controller: _pageController,
         itemBuilder: (BuildContext context, int index) {
@@ -67,7 +65,8 @@ class _MyHomePageState extends State<HomePage> {
       );
 
   ///浮动按钮
-  Widget float(BuildContext context) => new FloatingActionButton(
+  Widget float(BuildContext context) =>
+      new FloatingActionButton(
         tooltip: 'Increment',
         child: new Icon(Icons.add),
         onPressed: () {
@@ -85,7 +84,14 @@ class _MyHomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-        body: body(),
+        body: NotificationListener(
+            onNotification: (t) {
+              if (t is OverscrollNotification) {
+                print('不能滑动了');
+                return false;
+              }
+            },
+            child: body(_page)),
         floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
         floatingActionButton: float(context),
         bottomNavigationBar: new BottomNavigationBar(
