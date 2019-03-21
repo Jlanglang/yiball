@@ -54,8 +54,7 @@ class _MyHomePageState extends State<HomePage> {
   }
 
   ///主体内容
-  Widget body(_page) =>
-      PageView.builder(
+  Widget body(_page) => PageView.builder(
         onPageChanged: _onPageChanged,
         controller: _pageController,
         itemBuilder: (BuildContext context, int index) {
@@ -65,8 +64,7 @@ class _MyHomePageState extends State<HomePage> {
       );
 
   ///浮动按钮
-  Widget float(BuildContext context) =>
-      new FloatingActionButton(
+  Widget float(BuildContext context) => new FloatingActionButton(
         tooltip: 'Increment',
         child: new Icon(Icons.add),
         onPressed: () {
@@ -84,14 +82,7 @@ class _MyHomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-        body: NotificationListener(
-            onNotification: (t) {
-              if (t is OverscrollNotification) {
-                print('不能滑动了');
-                return false;
-              }
-            },
-            child: body(_page)),
+        body: body(_page),
         floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
         floatingActionButton: float(context),
         bottomNavigationBar: new BottomNavigationBar(
