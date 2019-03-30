@@ -12,6 +12,10 @@ class _RecommendPageState extends State<RecommendPage> {
     return await Future.delayed(Duration(seconds: 2), () => '请求数据成功');
   }
 
+  EdgeInsets fromLTRB({num left, num right}) {
+    return EdgeInsets.fromLTRB(left, 0.0, right, 0.0);
+  }
+
   Widget buildList(BuildContext context, int index) {
     return GestureDetector(
         onTap: () {
