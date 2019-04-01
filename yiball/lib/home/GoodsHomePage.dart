@@ -10,6 +10,14 @@ const url =
     'http://www.pptbz.com/pptpic/UploadFiles_6909/201203/2012031220134655.jpg';
 
 class _GoodsHomePageState extends State<GoodsHomePage> {
+  final heardGridItem = [
+    {"icon": Icons.add, 'label': '家具百货'},
+    {"icon": Icons.add, 'label': '家具百货'},
+    {"icon": Icons.add, 'label': '服装配饰'},
+    {"icon": Icons.add, 'label': '食品酒水'},
+    {"icon": Icons.add, 'label': '其它商品'},
+  ];
+
   Widget _getItem(BuildContext context, int index) {
     return new Container(
       height: 130.0,
@@ -39,26 +47,32 @@ class _GoodsHomePageState extends State<GoodsHomePage> {
                     new Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          Text('123', style: Utils.bodyText),
-                          new Container(
-                            width: 200.0,
-                            decoration: BoxDecoration(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(25.0)),
-                            ),
-                            child: new LinearProgressIndicator(
-                              backgroundColor: Colors.grey,
-                              value: 0.8,
-                              valueColor:
-                                  new AlwaysStoppedAnimation<Color>(Colors.red),
-                            ),
-                          ),
+                          Text('123', style: Utils.bodyText16),
+                          new Row(
+                            children: <Widget>[
+                              new Container(
+                                width: 150.0,
+                                decoration: BoxDecoration(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(25.0)),
+                                ),
+                                child: new LinearProgressIndicator(
+                                  backgroundColor: Colors.grey,
+                                  value: 0.8,
+                                  valueColor: new AlwaysStoppedAnimation<Color>(
+                                      Colors.red),
+                                ),
+                              ),
+                              new Text(' 仅剩10件'),
+                            ],
+                          )
                         ]),
                     new Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
                         new Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Text(
                               '\$20',
@@ -72,40 +86,14 @@ class _GoodsHomePageState extends State<GoodsHomePage> {
                             ),
                           ],
                         ),
-                        new Row(
-                          children: <Widget>[
-                            new Container(
-                              child: new Icon(
-                                Icons.remove,
-                                color: Colors.grey,
-                              ),
-                              decoration: new BoxDecoration(
-                                border:
-                                    Border.all(color: Colors.grey, width: 1.0),
-                              ),
-                              height: 30.0,
-                              width: 30.0,
-                            ),
-                            new Container(
-                              decoration: new BoxDecoration(
-                                border:
-                                    Border.all(color: Colors.grey, width: 1.0),
-                              ),
-                              alignment: Alignment.center,
-                              child: new Text('1'),
-                              height: 30.0,
-                              width: 30.0,
-                            ),
-                            new Container(
-                              child: new Icon(Icons.add),
-                              decoration: new BoxDecoration(
-                                border:
-                                    Border.all(color: Colors.grey, width: 1.0),
-                              ),
-                              height: 30.0,
-                              width: 30.0,
-                            ),
-                          ],
+                        new RaisedButton(
+                          onPressed: null,
+                          child: new Text(
+                            '马上抢',
+                            style: Utils.hintText16W,
+                          ),
+                          splashColor: Colors.white,
+                          disabledColor: Theme.of(context).primaryColor,
                         )
                       ],
                     ),
@@ -137,7 +125,7 @@ class _GoodsHomePageState extends State<GoodsHomePage> {
                   ),
                   new Text(
                     '许个愿吧',
-                    style: TextStyle(fontSize: 15.0),
+                    style: Utils.bodyText16,
                   ),
                   new Container(
                     margin: EdgeInsets.only(top: 140.0),
@@ -146,10 +134,10 @@ class _GoodsHomePageState extends State<GoodsHomePage> {
                         new EdgeInsetsDirectional.only(top: 40.0, bottom: 20.0),
                     child: new Column(
                       children: <Widget>[
-                        new Text('许个愿吧', style: TextStyle(fontSize: 25.0)),
+                        new Text('许个愿吧', style: Utils.titleText28),
                         new Text(
                           '广州茶楼点心餐饮',
-                          style: TextStyle(fontSize: 20.0),
+                          style: Utils.hintText16W30,
                         ),
                       ],
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -172,6 +160,19 @@ class _GoodsHomePageState extends State<GoodsHomePage> {
                 ],
               ),
             ),
+          ),
+          new SliverGrid.count(
+            childAspectRatio: 1.5,
+            crossAxisCount: heardGridItem.length,
+            children: heardGridItem.map((f) {
+              return new Center(
+                child: new Column(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[Icon(f['icon']), Text(f['label'])],
+                ),
+              );
+            }).toList(),
           ),
           new SliverToBoxAdapter(
             child: new Text(
