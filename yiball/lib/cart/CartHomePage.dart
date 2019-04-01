@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yiball/util/Utils.dart';
-import 'package:yiball/widght/BoxText.dart';
-import 'package:yiball/widght/JView.dart';
+import 'package:yiball/widget/JView.dart';
 
 class CartHomePage extends StatefulWidget {
   @override

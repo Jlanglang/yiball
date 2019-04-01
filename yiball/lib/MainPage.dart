@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yiball/home/GoodsHomePage.dart';
 import 'package:yiball/cart/CartHomePage.dart';
+import 'package:yiball/mine/MineHomePage.dart';
 
 class MainPage extends StatefulWidget {
   @override
@@ -14,7 +15,7 @@ class _MainPageState extends State<MainPage> {
     new GoodsHomePage(),
     new CartHomePage(),
     new CartHomePage(),
-    new Text('123'),
+    new MineHomePage(),
   ];
 
   void _bottomSelect(index) {

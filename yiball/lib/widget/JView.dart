@@ -113,3 +113,63 @@ class JFlex extends StatelessWidget {
     );
   }
 }
+
+class BoxBorderView extends StatelessWidget {
+  final text;
+  final radius;
+  final color;
+  final width;
+  final padding;
+
+  const BoxBorderView(
+      {@required this.text,
+      this.padding = 0.0,
+      this.radius = 3.0,
+      this.color = Colors.black,
+      this.width = 1.0})
+      : assert(text != null);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: text,
+      decoration: BoxDecoration(
+          border: Border.all(color: color, width: width),
+          borderRadius: BorderRadius.all(Radius.circular(radius))),
+      padding: EdgeInsets.all(padding),
+    );
+  }
+}
+
+class JTextView extends StatelessWidget {
+  final Widget leftIcon;
+  final Widget body;
+  final Widget hint;
+  final Widget rightIcon;
+  final height;
+
+  const JTextView(
+      {Key key, this.leftIcon, this.body, this.hint, this.rightIcon, this.height})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    var widget = new List<Widget>();
+    if (leftIcon != null) {
+      widget.add(leftIcon);
+    }
+    if (rightIcon != null) {
+      widget.add(rightIcon);
+    }
+    if (body != null) {
+      widget.add(body);
+    }
+    if (hint != null) {
+      widget.add(hint);
+    }
+    return JFlex.row(
+      height: height,
+      children: widget,
+    );
+  }
+}
