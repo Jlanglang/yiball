@@ -1,50 +1,27 @@
 import 'package:flutter/material.dart';
-import 'goods/GoodsPage.dart';
-import 'user/UserPage.dart';
-import 'article/ArticlePage.dart';
+import 'package:yiball/home/GoodsHomePage.dart';
+import 'package:yiball/cart/CartHomePage.dart';
+import 'package:yiball/mine/AddressManage.dart';
+import 'package:yiball/mine/MineHomePage.dart';
+import 'package:yiball/order/OrderHomePage.dart';
 
-class HomePage extends StatefulWidget {
-  HomePage({Key key}) : super(key: key);
-
+class MainPage extends StatefulWidget {
   @override
-  _MyHomePageState createState() => new _MyHomePageState();
+  _MainPageState createState() => _MainPageState();
 }
 
-class _MyHomePageState extends State<HomePage> {
+class _MainPageState extends State<MainPage> {
   int _selectPage = 0;
   var _pageController = new PageController(initialPage: 0);
   List _page = [
-    new ArticlePage(),
-    new GoodsPage(),
-    new UserPage(),
-    new UserPage(),
-  ];
-  var _bottom = [
-    new BottomNavigationBarItem(
-      icon: Icon(Icons.home),
-      title: Text('首页'),
-    ),
-    new BottomNavigationBarItem(
-      icon: Icon(Icons.stars),
-      title: Text('关注'),
-    ),
-    new BottomNavigationBarItem(
-      icon: Icon(Icons.account_balance_wallet),
-      title: Text('简书钻'),
-    ),
-    new BottomNavigationBarItem(
-      icon: Icon(Icons.message),
-      title: Text('消息'),
-    ),
-    new BottomNavigationBarItem(
-      icon: Icon(Icons.person),
-      title: Text('我的'),
-    )
+    new GoodsHomePage(),
+    new CartHomePage(),
+    new OrderHomePage(),
+    new MineHomePage(),
   ];
 
   void _bottomSelect(index) {
-    _pageController.animateToPage(index,
-        duration: new Duration(milliseconds: 1000), curve: Curves.ease);
+    _pageController.jumpToPage(index);
   }
 
   void _onPageChanged(index) {
@@ -63,33 +40,33 @@ class _MyHomePageState extends State<HomePage> {
         itemCount: _page.length,
       );
 
-  ///浮动按钮
-  Widget float(BuildContext context) => new FloatingActionButton(
-        tooltip: 'Increment',
-        child: new Icon(Icons.add),
-        onPressed: () {
-          showDialog(
-            context: context,
-            builder: (context) =>
-                SimpleDialog(title: Text("标题"), children: <Widget>[
-                  SimpleDialogOption(child: Text('内容1')),
-                  SimpleDialogOption(child: Text('内容2')),
-                ]),
-          );
-        },
-      );
-
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-        body: body(_page),
-        floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-        floatingActionButton: float(context),
-        bottomNavigationBar: new BottomNavigationBar(
-          type: BottomNavigationBarType.fixed,
-          items: _bottom,
-          onTap: _bottomSelect,
-          currentIndex: _selectPage,
-        ));
+      body: body(_page),
+      bottomNavigationBar: new BottomNavigationBar(
+        items: [
+          new BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            title: Text('首页'),
+          ),
+          new BottomNavigationBarItem(
+            icon: Icon(Icons.card_travel),
+            title: Text('购物车'),
+          ),
+          new BottomNavigationBarItem(
+            icon: Icon(Icons.search),
+            title: Text('订单查询'),
+          ),
+          new BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            title: Text('我的'),
+          ),
+        ],
+        type: BottomNavigationBarType.fixed,
+        onTap: _bottomSelect,
+        currentIndex: _selectPage,
+      ),
+    );
   }
 }
