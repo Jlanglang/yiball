@@ -218,7 +218,7 @@ class JView extends StatelessWidget {
           transform: transform,
           child: JFlex(
             direction: direction,
-            mainAxisAlignment: this.mainAxisAlignment,
+            mainAxisAlignment: mainAxisAlignment,
             crossAxisAlignment: this.crossAxisAlignment,
             children: children.length != 0 ? children : widget,
             mainAxisSize: this.mainAxisSize,
@@ -227,13 +227,14 @@ class JView extends StatelessWidget {
   }
 }
 
+
 class SimpleAppBar extends AppBar {
   SimpleAppBar({
     Key key,
     bool leading = false,
     automaticallyImplyLeading = true,
     String title = '',
-    actions,
+    List<Widget> actions,
     flexibleSpace,
     bottom,
     elevation = 4.0,
@@ -249,7 +250,8 @@ class SimpleAppBar extends AppBar {
   }) : super(
           key: key,
           leading: leading
-              ? const BackLeading(child: Icon(
+              ? const BackLeading(
+                  child: Icon(
                   Icons.arrow_back_ios,
                   size: 18.0,
                   color: Colors.black,
@@ -278,6 +280,7 @@ class SimpleAppBar extends AppBar {
 
 class BackLeading extends StatelessWidget {
   final child;
+
   const BackLeading({Key key, this.child}) : super(key: key);
 
   @override

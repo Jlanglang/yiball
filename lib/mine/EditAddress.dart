@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:yiball/util/Utils.dart';
+import 'package:yiball/widget/JView.dart';
 
 class EditAddress extends StatefulWidget {
   @override
@@ -9,14 +11,13 @@ class _EditAddressState extends State<EditAddress> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: new AppBar(
-        title: Text('编辑收货地址'),
-        centerTitle: true,
-        actions: <Widget>[
-          Text('删除')
+      appBar: new SimpleAppBar(
+        title: '编辑收货地址',
+        leading: true,
+        actions: [
+          Icon(Icons.delete,color: Colors.grey,),
         ],
-        leading: Icon(Icons.arrow_back_ios,size: 15.0,),
-      ),
+      )
     );
   }
 }

@@ -24,11 +24,13 @@ class _AddressManageState extends State<AddressManage> {
           new Positioned(
             child: new JView(
               color: Colors.red,
-              body: Text(
+              body: GestureDetector(
+                onTap: ()=>Navigator.of(context).pushNamed('mine/editAddress'),
+                child:Text(
                 '新建地址',
                 style: Utils.bodyText16W,
                 textAlign: TextAlign.center,
-              ),
+              )),
             ),
             left: 20.0,
             right: 20.0,

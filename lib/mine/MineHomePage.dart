@@ -50,7 +50,8 @@ class _MineHomePageState extends State<MineHomePage> {
               ),
             ),
             new JView(
-              body: Text('我的收货地址'),
+              body: GestureDetector(child:Text('我的收货地址'),
+              onTap: ()=>Navigator.of(context).pushNamed('mine/addressManage'),),
               end: Icon(
                 Icons.arrow_forward,
                 size: 15.0,

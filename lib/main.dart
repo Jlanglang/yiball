@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yiball/MainPage.dart';
+import 'package:yiball/mine/AddressManage.dart';
+import 'package:yiball/mine/EditAddress.dart';
 import 'package:yiball/order/OrderDetailPage.dart';
 
 void main() => runApp(new MyApp());
@@ -12,6 +14,8 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       routes: {
         'order/detail': (context) => OrderDetailPage(),
+        'mine/editAddress': (context) => EditAddress(),
+        'mine/addressManage': (context) => AddressManage(),
       },
       theme: new ThemeData(
           // This is the theme of your application.
