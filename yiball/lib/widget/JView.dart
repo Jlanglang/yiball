@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:path/path.dart';
 
 class JFlex extends StatelessWidget {
   final mainAxisAlignment;
@@ -19,7 +20,7 @@ class JFlex extends StatelessWidget {
   final height;
   final constraints;
   final transform;
-  final direction;
+  final Axis direction;
 
   const JFlex({
     Key key,
@@ -56,7 +57,7 @@ class JFlex extends StatelessWidget {
     this.padding,
     this.margin,
     this.alignment,
-    this.color,
+    this.color = Colors.transparent,
     this.decoration,
     this.foregroundDecoration,
     this.width,
@@ -78,7 +79,7 @@ class JFlex extends StatelessWidget {
     this.padding,
     this.margin,
     this.alignment,
-    this.color,
+    this.color = Colors.transparent,
     this.decoration,
     this.foregroundDecoration,
     this.width,
@@ -93,7 +94,7 @@ class JFlex extends StatelessWidget {
       padding: padding,
       margin: margin,
       alignment: alignment,
-      color: color,
+      color: decoration == null ? color : null,
       decoration: decoration,
       foregroundDecoration: foregroundDecoration,
       width: width,
@@ -118,58 +119,172 @@ class BoxBorderView extends StatelessWidget {
   final text;
   final radius;
   final color;
+  final backgroundColor;
   final width;
-  final padding;
+  final double padding;
+  final margin;
 
-  const BoxBorderView(
-      {@required this.text,
-      this.padding = 0.0,
-      this.radius = 3.0,
-      this.color = Colors.black,
-      this.width = 1.0})
-      : assert(text != null);
+  const BoxBorderView({
+    @required this.text,
+    this.padding = 0.0,
+    this.radius = 3.0,
+    this.color = Colors.black,
+    this.width = 1.0,
+    this.backgroundColor = Colors.transparent,
+    this.margin,
+  }) : assert(text != null);
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: margin,
       child: text,
       decoration: BoxDecoration(
-          border: Border.all(color: color, width: width),
+          color: backgroundColor,
+          border: color == null ? null : Border.all(color: color, width: width),
           borderRadius: BorderRadius.all(Radius.circular(radius))),
       padding: EdgeInsets.all(padding),
     );
   }
 }
 
-class JTextView extends StatelessWidget {
-  final Widget leftIcon;
+class JView extends StatelessWidget {
+  final Widget start;
   final Widget body;
   final Widget hint;
-  final Widget rightIcon;
-  final height;
+  final Widget end;
+  final mainAxisAlignment;
 
-  const JTextView(
-      {Key key, this.leftIcon, this.body, this.hint, this.rightIcon, this.height})
-      : super(key: key);
+  final mainAxisSize;
+  final crossAxisAlignment;
+  final padding;
+  final margin;
+  final color;
+  final decoration;
+  final height;
+  final transform;
+  final direction;
+  final List<Widget> children;
+  final offstage;
+
+  const JView({
+    Key key,
+    this.start,
+    this.body,
+    this.hint,
+    this.end,
+    this.mainAxisAlignment = MainAxisAlignment.start,
+    this.mainAxisSize = MainAxisSize.max,
+    this.crossAxisAlignment = CrossAxisAlignment.center,
+    this.padding = const EdgeInsets.symmetric(horizontal: 8.0),
+    this.margin,
+    this.color = Colors.white,
+    this.decoration,
+    this.height = 44.0,
+    this.transform,
+    this.direction = Axis.horizontal,
+    this.children = const [],
+    this.offstage = false,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    var widget = new List<Widget>();
-    if (leftIcon != null) {
-      widget.add(leftIcon);
+    final widget = <Widget>[];
+    if (children.length == 0) {
+      if (start != null) {
+        widget.add(start);
+      }
+      if (body != null) {
+        widget.add(new Expanded(
+          child: body,
+          flex: 1,
+        ));
+      }
+      if (hint != null) {
+        widget.add(hint);
+      }
+      if (end != null) {
+        widget.add(end);
+      }
     }
-    if (rightIcon != null) {
-      widget.add(rightIcon);
-    }
-    if (body != null) {
-      widget.add(body);
-    }
-    if (hint != null) {
-      widget.add(hint);
-    }
-    return JFlex.row(
-      height: height,
-      children: widget,
+    return new Offstage(
+        offstage: offstage,
+        child: Container(
+          decoration: decoration,
+          padding: padding,
+          margin: margin,
+          color: decoration == null ? color : null,
+          height: height,
+          transform: transform,
+          child: JFlex(
+            direction: direction,
+            mainAxisAlignment: this.mainAxisAlignment,
+            crossAxisAlignment: this.crossAxisAlignment,
+            children: children.length != 0 ? children : widget,
+            mainAxisSize: this.mainAxisSize,
+          ),
+        ));
+  }
+}
+
+class SimpleAppBar extends AppBar {
+  SimpleAppBar({
+    Key key,
+    bool leading = false,
+    automaticallyImplyLeading = true,
+    String title = '',
+    actions,
+    flexibleSpace,
+    bottom,
+    elevation = 4.0,
+    backgroundColor = Colors.white,
+    brightness,
+    iconTheme,
+    textTheme,
+    primary = true,
+    centerTitle = true,
+    titleSpacing = NavigationToolbar.kMiddleSpacing,
+    toolbarOpacity = 1.0,
+    bottomOpacity = 1.0,
+  }) : super(
+          key: key,
+          leading: leading
+              ? const BackLeading(child: Icon(
+                  Icons.arrow_back_ios,
+                  size: 18.0,
+                  color: Colors.black,
+                ))
+              : null,
+          automaticallyImplyLeading: automaticallyImplyLeading,
+          title: Text(
+            title,
+            style: TextStyle(color: Colors.black, fontSize: 18.0),
+          ),
+          actions: actions,
+          flexibleSpace: flexibleSpace,
+          bottom: bottom,
+          elevation: elevation,
+          backgroundColor: backgroundColor,
+          brightness: brightness,
+          iconTheme: iconTheme,
+          textTheme: textTheme,
+          primary: primary,
+          centerTitle: centerTitle,
+          titleSpacing: titleSpacing,
+          toolbarOpacity: toolbarOpacity,
+          bottomOpacity: bottomOpacity,
+        );
+}
+
+class BackLeading extends StatelessWidget {
+  final child;
+  const BackLeading({Key key, this.child}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () => Navigator.pop(context),
+      child: child,
     );
   }
 }

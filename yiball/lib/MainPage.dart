@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:yiball/home/GoodsHomePage.dart';
 import 'package:yiball/cart/CartHomePage.dart';
+import 'package:yiball/mine/AddressManage.dart';
 import 'package:yiball/mine/MineHomePage.dart';
+import 'package:yiball/order/OrderHomePage.dart';
 
 class MainPage extends StatefulWidget {
   @override
@@ -14,7 +16,7 @@ class _MainPageState extends State<MainPage> {
   List _page = [
     new GoodsHomePage(),
     new CartHomePage(),
-    new CartHomePage(),
+    new OrderHomePage(),
     new MineHomePage(),
   ];
 
