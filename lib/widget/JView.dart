@@ -16,8 +16,8 @@ class JFlex extends StatelessWidget {
   final color;
   final decoration;
   final foregroundDecoration;
-  final width;
-  final height;
+  final double width;
+  final double height;
   final constraints;
   final transform;
   final Axis direction;
@@ -116,22 +116,28 @@ class JFlex extends StatelessWidget {
 }
 
 class BoxBorderView extends StatelessWidget {
-  final text;
+  final Widget text;
   final radius;
   final color;
   final backgroundColor;
-  final width;
+  final double borderWidth;
+  final double width;
+  final double height;
   final double padding;
-  final margin;
+  final EdgeInsets margin;
+  final alignment;
 
   const BoxBorderView({
     @required this.text,
     this.padding = 0.0,
     this.radius = 3.0,
     this.color = Colors.black,
-    this.width = 1.0,
+    this.borderWidth = 1.0,
     this.backgroundColor = Colors.transparent,
     this.margin,
+    this.width = 100,
+    this.height = 40,
+    this.alignment = Alignment.center,
   }) : assert(text != null);
 
   @override
@@ -139,9 +145,14 @@ class BoxBorderView extends StatelessWidget {
     return Container(
       margin: margin,
       child: text,
+      width: width,
+      height: height,
+      alignment: alignment,
       decoration: BoxDecoration(
           color: backgroundColor,
-          border: color == null ? null : Border.all(color: color, width: width),
+          border: color == null
+              ? null
+              : Border.all(color: color, width: borderWidth),
           borderRadius: BorderRadius.all(Radius.circular(radius))),
       padding: EdgeInsets.all(padding),
     );
@@ -161,7 +172,7 @@ class JView extends StatelessWidget {
   final margin;
   final color;
   final decoration;
-  final height;
+  final double height;
   final transform;
   final direction;
   final List<Widget> children;
@@ -227,7 +238,6 @@ class JView extends StatelessWidget {
   }
 }
 
-
 class SimpleAppBar extends AppBar {
   SimpleAppBar({
     Key key,
@@ -251,11 +261,8 @@ class SimpleAppBar extends AppBar {
           key: key,
           leading: leading
               ? const BackLeading(
-                  child: Icon(
-                  Icons.arrow_back_ios,
-                  size: 18.0,
                   color: Colors.black,
-                ))
+                )
               : null,
           automaticallyImplyLeading: automaticallyImplyLeading,
           title: Text(
@@ -278,16 +285,22 @@ class SimpleAppBar extends AppBar {
         );
 }
 
-class BackLeading extends StatelessWidget {
+class BackLeading extends BackButton {
   final child;
 
-  const BackLeading({Key key, this.child}) : super(key: key);
+  const BackLeading({Key key, this.child, color})
+      : super(key: key, color: color);
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => Navigator.pop(context),
-      child: child,
-    );
+    return child == null
+        ? super.build(context)
+        : IconButton(
+            icon: child,
+            tooltip: MaterialLocalizations.of(context).closeButtonTooltip,
+            onPressed: () {
+              Navigator.maybePop(context);
+            },
+          );
   }
 }
