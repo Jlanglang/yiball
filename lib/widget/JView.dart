@@ -135,8 +135,8 @@ class BoxBorderView extends StatelessWidget {
     this.borderWidth = 1.0,
     this.backgroundColor = Colors.transparent,
     this.margin,
-    this.width = 100,
-    this.height = 40,
+    this.width ,
+    this.height,
     this.alignment = Alignment.center,
   }) : assert(text != null);
 
