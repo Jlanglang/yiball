@@ -66,13 +66,13 @@ class _CartHomePageState extends State<CartHomePage> {
                                   Text('123', style: Utils.bodyText16),
                                   Text('123', style: Utils.hintText12B38),
                                   BoxBorderView(
-                                    padding: 1.0,
                                     text: new Text(
                                       '2件起购',
                                       style: Utils.hintText12R,
                                     ),
                                     color: Colors.red,
-                                    width: 0.5,
+                                    width: 50,
+                                    borderWidth: 0.5,
                                     radius: 3.0,
                                   ),
                                 ],
@@ -169,39 +169,41 @@ class _CartHomePageState extends State<CartHomePage> {
       children: <Widget>[
         new CustomScrollView(
           slivers: <Widget>[
-            new SliverToBoxAdapter(
-              child: new Image.network(
-                url,
-                width: double.infinity,
-                height: 200.0,
-                fit: BoxFit.cover,
-              ),
-            ),
-            new SliverToBoxAdapter(
-              child: new Container(
-                padding: EdgeInsets.only(left: 10.0),
-                child: new Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    new Text(
-                      '购卖的所有商品均由商家派专人送货上门,请留意开门',
-                      style: Utils.hintText12W30,
-                    ),
-                    FlatButton.icon(
-                        onPressed: null,
-                        icon: Icon(
-                          Icons.error_outline,
-                          color: Colors.white,
-                        ),
-                        label: new Text(
-                          '急速上门',
-                          style: Utils.hintText12W,
-                        ))
-                  ],
-                ),
-                color: Colors.black87,
-              ),
-            ),
+            new SliverAppBar(
+                expandedHeight: 200.0,
+                floating: true,
+                pinned: true,
+                title: new Text('123'),
+                flexibleSpace: FlexibleSpaceBar(
+                    centerTitle: true,
+                    background: new Container(
+                      alignment: Alignment.bottomCenter,
+                      decoration: new BoxDecoration(
+                          image: new DecorationImage(
+                              fit: BoxFit.fill,
+                              image: NetworkImage(
+                                url,
+                              ))),
+                      child: new Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: <Widget>[
+                          new Text(
+                            '购卖的所有商品均由商家派专人送货上门,请留意开门',
+                            style: Utils.hintText12W,
+                          ),
+                          FlatButton.icon(
+                              onPressed: null,
+                              icon: Icon(
+                                Icons.error_outline,
+                                color: Colors.white,
+                              ),
+                              label: new Text(
+                                '急速上门',
+                                style: Utils.hintText12W,
+                              )),
+                        ],
+                      ),
+                    ))),
             new SliverList(
               delegate: SliverChildBuilderDelegate(_getItem, childCount: 20),
             )
@@ -247,3 +249,4 @@ class _CartHomePageState extends State<CartHomePage> {
     ));
   }
 }
+

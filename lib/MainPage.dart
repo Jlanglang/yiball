@@ -4,6 +4,8 @@ import 'package:yiball/cart/CartHomePage.dart';
 import 'package:yiball/mine/AddressManage.dart';
 import 'package:yiball/mine/MineHomePage.dart';
 import 'package:yiball/order/OrderHomePage.dart';
+import 'package:yiball/order/TestPage.dart';
+import 'package:yiball/order/TestPage2.dart';
 
 class MainPage extends StatefulWidget {
   @override

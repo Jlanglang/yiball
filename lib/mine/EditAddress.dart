@@ -106,8 +106,20 @@ class _EditAddressState extends State<EditAddress> {
                         ),
                         width: 50,
                       ),
-                      BoxBorderView(text: Text('家')),
-                      BoxBorderView(text: Text('家')),
+                      BoxBorderView(
+                        text: Text(
+                          '家',
+                          textAlign: TextAlign.center,
+                        ),
+                        width: 50,
+                      ),
+                      BoxBorderView(
+                        text: Text(
+                          '家',
+                          textAlign: TextAlign.center,
+                        ),
+                        width: 50,
+                      ),
                     ],
                   ),
                 ),
@@ -122,16 +134,32 @@ class _EditAddressState extends State<EditAddress> {
               ],
             ),
             Positioned(
-              bottom: 0,
+              bottom: 60,
+              left: 0,
+              right: 0,
               child: Container(
-                width: 200,
-                alignment: Alignment.center,
-                child: MaterialButton(
-                  onPressed: null,
-                  child: Text('保存',style: Utils.hintText12W,),
-                  color: Colors.red,
-                ),
-              ),
+                  alignment: Alignment.center,
+                  child: new Builder(builder: (BuildContext context) {
+                    return MaterialButton(
+                      minWidth: 200,
+                      onPressed: () {
+                        final scaffold = Scaffold.of(context);
+                        scaffold.showSnackBar(
+                          SnackBar(
+                            content: const Text('Added to favorite'),
+                            action: SnackBarAction(
+                                label: 'UNDO',
+                                onPressed: scaffold.hideCurrentSnackBar),
+                          ),
+                        );
+                      },
+                      child: Text(
+                        '保存',
+                        style: Utils.hintText12W,
+                      ),
+                      color: Colors.red,
+                    );
+                  })),
             ),
           ],
         ));

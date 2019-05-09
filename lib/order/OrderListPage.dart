@@ -12,6 +12,7 @@ class _OrderListPageState extends State<OrderListPage> {
   Widget build(BuildContext context) {
     return Container(
       child: ListView.builder(
+        padding: EdgeInsets.only(top: 0),
         itemBuilder: _getItem,
         itemCount: 10,
       ),
@@ -22,7 +23,7 @@ class _OrderListPageState extends State<OrderListPage> {
     return new GestureDetector(
       child: JFlex.col(
         color: Colors.white,
-        margin: EdgeInsets.only(top: 10.0),
+        margin: EdgeInsets.only(top: 8),
         padding: EdgeInsets.all(8.0),
         children: <Widget>[
           JView(
