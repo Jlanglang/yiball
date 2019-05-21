@@ -1,6 +1,6 @@
 # yiball
 
-A new Flutter application.
+一个flutter的简单商城demo
 
 ## Getting Started
 
