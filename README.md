@@ -1,6 +1,6 @@
 # yiball
 
-一个flutter的简单商城demo
+一个简单的商城demo
 
 ## Getting Started
 
