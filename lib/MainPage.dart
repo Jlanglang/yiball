@@ -47,24 +47,27 @@ class _MainPageState extends State<MainPage> {
     return new Scaffold(
       body: body(_page),
       bottomNavigationBar: new BottomNavigationBar(
+        unselectedItemColor: Colors.grey,
+        selectedItemColor: Colors.blue,
         items: [
           new BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            title: Text('首页'),
-          ),
-          new BottomNavigationBarItem(
-            icon: Icon(Icons.card_travel),
-            title: Text('购物车'),
+            title: new Container(),// 我也不知道为啥要设计成必传的.
           ),
           new BottomNavigationBarItem(
             icon: Icon(Icons.search),
-            title: Text('订单查询'),
+            title: new Container(),
+          ),
+          new BottomNavigationBarItem(
+            icon: Icon(Icons.book),
+            title: new Container(),
           ),
           new BottomNavigationBarItem(
             icon: Icon(Icons.person),
-            title: Text('我的'),
+            title: new Container(),
           ),
         ],
+        backgroundColor: Colors.white,
         type: BottomNavigationBarType.fixed,
         onTap: _bottomSelect,
         currentIndex: _selectPage,

@@ -171,7 +171,7 @@ class _CartHomePageState extends State<CartHomePage> {
           slivers: <Widget>[
             new SliverAppBar(
                 expandedHeight: 200.0,
-                floating: true,
+                floating: false,
                 pinned: true,
                 title: new Text('123'),
                 flexibleSpace: FlexibleSpaceBar(
