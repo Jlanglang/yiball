@@ -47,8 +47,8 @@ class _MainPageState extends State<MainPage> {
     return new Scaffold(
       body: body(_page),
       bottomNavigationBar: new BottomNavigationBar(
-        unselectedItemColor: Colors.grey,
-        selectedItemColor: Colors.blue,
+//        unselectedItemColor: Colors.grey,
+//        selectedItemColor: Colors.blue,
         items: [
           new BottomNavigationBarItem(
             icon: Icon(Icons.home),
@@ -67,7 +67,7 @@ class _MainPageState extends State<MainPage> {
             title: new Container(),
           ),
         ],
-        backgroundColor: Colors.white,
+//        backgroundColor: Colors.white,
         type: BottomNavigationBarType.fixed,
         onTap: _bottomSelect,
         currentIndex: _selectPage,

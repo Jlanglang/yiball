@@ -32,9 +32,9 @@ class _AddressManageState extends State<AddressManage> {
                 textAlign: TextAlign.center,
               )),
             ),
-            left: 20.0,
-            right: 20.0,
-            bottom: 10.0,
+            left: 20,
+            right: 20,
+            bottom: 10,
           )
         ],
       ),
@@ -79,6 +79,7 @@ class _AddressManageState extends State<AddressManage> {
               start: new JFlex.row(
                 children: <Widget>[
                   Checkbox(
+                    onChanged: (b){},
                     value: true,
                     materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                   ),
