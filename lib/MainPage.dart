@@ -14,6 +14,7 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   int _selectPage = 0;
+  int _currentIndex = 0;
   var _pageController = new PageController(initialPage: 0);
   List _page = [
     new GoodsHomePage(),
@@ -23,6 +24,9 @@ class _MainPageState extends State<MainPage> {
   ];
 
   void _bottomSelect(index) {
+    setState(() {
+      _currentIndex = index;
+    });
     _pageController.jumpToPage(index);
   }
 
@@ -46,32 +50,55 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return new Scaffold(
       body: body(_page),
-      bottomNavigationBar: new BottomNavigationBar(
-//        unselectedItemColor: Colors.grey,
-//        selectedItemColor: Colors.blue,
-        items: [
-          new BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            title: new Container(),// 我也不知道为啥要设计成必传的.
-          ),
-          new BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            title: new Container(),
-          ),
-          new BottomNavigationBarItem(
-            icon: Icon(Icons.book),
-            title: new Container(),
-          ),
-          new BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            title: new Container(),
-          ),
+      bottomNavigationBar: new BottomAppBar(
+          child: new Row(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: <Widget>[
+          IconButton(
+              icon: Icon(Icons.home),
+              disabledColor: Colors.green,
+              onPressed: _currentIndex == 0 ? null : () => _bottomSelect(0)),
+          IconButton(
+              icon: Icon(Icons.search),
+              disabledColor: Colors.green,
+              onPressed: _currentIndex == 1 ? null : () => _bottomSelect(1)),
+          IconButton(
+              icon: Icon(Icons.assignment),
+              disabledColor: Colors.green,
+              onPressed: _currentIndex == 2 ? null : () => _bottomSelect(2)),
+          IconButton(
+              icon: Icon(Icons.person),
+              disabledColor: Colors.green,
+              onPressed: _currentIndex == 3 ? null : () => _bottomSelect(3)),
         ],
-//        backgroundColor: Colors.white,
-        type: BottomNavigationBarType.fixed,
-        onTap: _bottomSelect,
-        currentIndex: _selectPage,
-      ),
+      )), //bottomAppBar
+//      bottomNavigationBar: new BottomNavigationBar(
+////        unselectedItemColor: Colors.grey,
+////        selectedItemColor: Colors.blue,
+//        items: [
+//          new BottomNavigationBarItem(
+//            icon: Icon(Icons.home),
+//            title: new Container(height: 0,),// 我也不知道为啥要设计成必传的.
+//          ),
+//          new BottomNavigationBarItem(
+//            icon: Icon(Icons.search),
+//            title: new Container(),
+//          ),
+//          new BottomNavigationBarItem(
+//            icon: Icon(Icons.book),
+//            title: new Container(),
+//          ),
+//          new BottomNavigationBarItem(
+//            icon: Icon(Icons.person),
+//            title: new Container(),
+//          ),
+//        ],
+////        backgroundColor: Colors.white,
+//        type: BottomNavigationBarType.fixed,
+//        onTap: _bottomSelect,
+//        currentIndex: _selectPage,
+//      ),
     );
   }
 }

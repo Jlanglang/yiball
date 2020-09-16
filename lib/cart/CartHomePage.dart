@@ -184,12 +184,13 @@ class _CartHomePageState extends State<CartHomePage> {
                               image: NetworkImage(
                                 url,
                               ))),
-                      child: new Row(
+                      child: new JFlex.col(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: <Widget>[
                           new Text(
-                            '购卖的所有商品均由商家派专人送货上门,请留意开门',
+                            '购买的所有商品均由商家派专人送货上门,请留意开门',
                             style: Utils.hintText12W,
+                            maxLines: 2,
                           ),
                           FlatButton.icon(
                               onPressed: null,
@@ -249,4 +250,3 @@ class _CartHomePageState extends State<CartHomePage> {
     ));
   }
 }
-

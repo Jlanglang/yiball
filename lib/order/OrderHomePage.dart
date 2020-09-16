@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yiball/order/OrderListPage.dart';
 import 'package:yiball/util/Utils.dart';
+import 'package:yiball/widget/JView.dart';
 
 const url =
     'http://www.pptbz.com/pptpic/UploadFiles_6909/201203/2012031220134655.jpg';
@@ -42,23 +43,27 @@ class _OrderHomePageState extends State<OrderHomePage> {
                                     image: NetworkImage(
                                       url,
                                     ))),
-                            child: new Row(
+                            child: new JFlex.row(
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: <Widget>[
-                                new Text(
-                                  '购卖的所有商品均由商家派专人送货上门,请留意开门',
-                                  style: Utils.hintText12W,
+                                Expanded(
+                                  child: new Text(
+                                    '购买的所有商品均由商家派专人送货上门,请留意开门',
+                                    style: Utils.hintText12W,
+                                    softWrap: true,
+                                  ),
                                 ),
                                 FlatButton.icon(
-                                    onPressed: null,
-                                    icon: Icon(
-                                      Icons.error_outline,
-                                      color: Colors.white,
-                                    ),
-                                    label: new Text(
-                                      '急速上门',
-                                      style: Utils.hintText12W,
-                                    ))
+                                  onPressed: null,
+                                  icon: Icon(
+                                    Icons.error_outline,
+                                    color: Colors.white,
+                                  ),
+                                  label: new Text(
+                                    '急速上门',
+                                    style: Utils.hintText12W,
+                                  ),
+                                )
                               ],
                             ),
                           ))),
@@ -69,6 +74,7 @@ class _OrderHomePageState extends State<OrderHomePage> {
                         indicatorColor: Colors.red,
                         unselectedLabelColor: Colors.black,
                         labelColor: Colors.red,
+                        labelPadding: EdgeInsets.all(0),
                       ),
                       color: Colors.white,
                     ),
